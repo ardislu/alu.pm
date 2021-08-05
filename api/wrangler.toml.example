@@ -1,0 +1,8 @@
+name = 'api'
+type = 'javascript'
+account_id = ''
+workers_dev = true
+route = 'example.com/*'
+kv_namespaces = [
+  { binding = "URL_MAPPING", id = "", preview_id = "" }
+]

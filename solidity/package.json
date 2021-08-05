@@ -1,0 +1,17 @@
+{
+  "name": "solidity",
+  "version": "0.1.0",
+  "description": "Smart contract to handle access control for the https://alu.pm short link service.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "blockchain"
+  ],
+  "author": "Ardis Lu",
+  "license": "ISC"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "description": "API backend for the https://alu.pm short link service.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "login": "wrangler login",
+    "preview": "wrangler preview",
+    "build": "wrangler build",
+    "publish": "wrangler publish"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "cloudflare"
+  ],
+  "author": "Ardis Lu",
+  "license": "ISC",
+  "dependencies": {
+    "@cloudflare/wrangler": "^1.19.0"
+  }
+}

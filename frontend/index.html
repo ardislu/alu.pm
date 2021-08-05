@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Short link service with access control on the Ethereum blockchain." />
+  <link rel="icon" href="/favicon.ico" />
+  <style type="text/css">
+    body {
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", Helvetica, Arial,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      color: hsl(0deg 0% 15%);
+      background: hsl(0deg 0% 90%);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    label {
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+      margin-block-end: 1rem;
+    }
+  </style>
+  <title>alu.pm</title>
+</head>
+
+<body>
+  <header>
+    <h1>alu.pm</h1>
+    <a href="https://github.com/ardislu/alu.pm">
+      <img src="/github.svg" width="24" height="24" alt="GitHub" />
+    </a>
+  </header>
+  <main>
+    <button type="button">Connect wallet</button>
+
+    <form action="http://127.0.0.1:8787/" method="post">
+    <!-- <form action="https://api.alu.pm/" method="post"> -->
+
+      <label for="short-url">Enter a custom short URL, or leave blank to generate a random short URL. Maximum 80 characters, valid characters are alphanumeric, "-", "_", and ".":</label>
+      <input type="text" id="short-url" name="short-url" placeholder="example" maxlength="80" pattern="^[0-9a-zA-Z-_.]*$">
+
+      <label for="full-url">Enter a URL:</label>
+      <input type="url" id="full-url" name="full-url" placeholder="https://example.com" required>
+
+      <button type="submit">Generate short link</button>
+    </form>
+  </main>
+</body>
+
+</html>

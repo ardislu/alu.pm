@@ -1,0 +1,21 @@
+{
+  "name": "alu.pm",
+  "version": "0.1.0",
+  "description": "Monorepo for a short URL service, with access control managed on the Ethereum blockchain.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ethereum",
+    "blockchain"
+  ],
+  "author": "Ardis Lu",
+  "license": "ISC",
+  "workspaces": [
+    "frontend",
+    "api",
+    "solidity"
+  ]
+}

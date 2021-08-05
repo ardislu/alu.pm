@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:,"> 
+  <title>Redirecting...</title>
+</head>
+
+<body>
+  <main>
+    <p>Redirecting...</p>
+    <a href="/">Home</a>
+  </main>
+
+  <script>
+    (async () => {
+      const apiUrl = "http://127.0.0.1:8787";
+      // const apiUrl = "https://api.alu.pm";
+      const shortUrl = window.location.pathname.split("/").pop();
+      const url = `${apiUrl}/${shortUrl}`;
+
+      const handleError = response => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        };
+        return response;
+      };
+
+      const showError = error => {
+        document.title = "Invalid short URL";
+        const message = document.getElementsByTagName("p")[0];
+        message.innerText = `"${shortUrl}" is not a valid short URL.`;
+      };
+
+      await fetch(url)
+        .then(handleError)
+        .then(response => response.text())
+        .then(redirectUrl => window.location.replace(redirectUrl))
+        .catch(showError);
+    })();
+  </script>
+</body>
+
+</html>

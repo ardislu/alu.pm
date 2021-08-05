@@ -1,4 +1,4 @@
-# alu.pm/api
+# alu&#46;pm/api
 
 This is the API for the [alu.pm](https://alu.pm) short link service.
 

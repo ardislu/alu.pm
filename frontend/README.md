@@ -1,4 +1,4 @@
-# alu.pm/frontend
+# alu&#46;pm/frontend
 
 This is the frontend for my short link service [alu.pm](https://alu.pm), which has access control powered by NFTs on the Ethereum blockchain!
 

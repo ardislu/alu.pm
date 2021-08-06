@@ -29,6 +29,10 @@ async function handleRequest(request) {
     else if (!validShortUrlRegex.test(shortUrl) || shortUrl === 'favicon.ico') {
       return invalidShortUrlResponse;
     }
+    // Catch user-provided duplicate shortUrls
+    else if (await URL_MAPPING.get(shortUrl) !== null) {
+      return invalidShortUrlResponse;
+    }
 
     // Short circuit known bad fullUrls
     try {
@@ -37,12 +41,6 @@ async function handleRequest(request) {
     catch (error) {
       return invalidFullUrlResponse;
     }
-
-    // Catch duplicate shortUrls
-    const existingUrl = await URL_MAPPING.get(shortUrl);
-    if (existingUrl !== null) {
-      return invalidShortUrlResponse;
-    } 
 
     await URL_MAPPING.put(shortUrl, fullUrl);
     return new Response(`Successfully created short URL: https://alu.pm/${shortUrl}`);

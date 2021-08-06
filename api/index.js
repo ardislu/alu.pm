@@ -23,7 +23,7 @@ async function handleRequest(request) {
         // Need to spread typed array into a non-typed array to allow .map() to output strings,
         // and use .toString(36) to convert number to alphanumeric (base-36 = 0-9 + a-z)
         shortUrl = [...array].map(v => (v % 36).toString(36)).join('');
-      } while (URL_MAPPING.get(shortUrl) !== null); // Check that the random shortUrl isn't already taken
+      } while (await URL_MAPPING.get(shortUrl) !== null); // Check that the random shortUrl isn't already taken
     }
     // Short circuit known bad shortUrls
     else if (!validShortUrlRegex.test(shortUrl) || shortUrl === 'favicon.ico') {

@@ -27,6 +27,15 @@
       margin: 0 auto;
     }
 
+    output {
+      display: block;
+    }
+
+    /* :last-child will not work, must use :nth-last-child(2) */
+    output:nth-last-child(2) {
+      margin-block-end: 1rem;
+    }
+
     form {
       display: flex;
       flex-wrap: wrap;
@@ -54,8 +63,8 @@
 
   <main>
     <button type="button" id="connect-button">Connect wallet</button>
-    <p id="address">No address connected!</p>
-    <p id="permission">No custom short link permission!</p>
+    <output id="address">❌ No address connected!</output>
+    <output id="permission">❌ Custom short links not allowed!</output>
 
     <form action="http://127.0.0.1:8787/" method="post">
     <!-- <form action="https://api.alu.pm/" method="post"> -->
@@ -86,13 +95,13 @@
 
     // Update HTML to reflect current active account
     const showAddress = async address => {
-      document.getElementById('address').innerText = address ? `Connected address: ${address}` : 'No address connected!';
+      document.getElementById('address').innerText = address ? `✔ ${address}` : '❌ No address connected!';
       const tokens = await zerion.balanceOf(address, 5);
       if (!ethers.BigNumber.isBigNumber(tokens)) {
         window.alert('Something went wrong fetching your NFTs. Try again.');
         return;
       }
-      document.getElementById('permission').innerText = address ? `Number of access tokens owned: ${tokens}` : 'No custom short link permission!';
+      document.getElementById('permission').innerText = tokens > 0 ? '✔ Custom short links allowed!' : '❌ Custom short links not allowed!';
       if (tokens > 0) {
         document.getElementById('short-url').removeAttribute('disabled');
       }

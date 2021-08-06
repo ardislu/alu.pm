@@ -51,8 +51,11 @@
       <img src="/github.svg" width="24" height="24" alt="GitHub" />
     </a>
   </header>
+
   <main>
-    <button type="button">Connect wallet</button>
+    <button type="button" id="connect-button">Connect wallet</button>
+    <p id="address">No address connected!</p>
+    <p id="permission">No custom short link permission!</p>
 
     <form action="http://127.0.0.1:8787/" method="post">
     <!-- <form action="https://api.alu.pm/" method="post"> -->
@@ -66,6 +69,53 @@
       <button type="submit">Generate short link</button>
     </form>
   </main>
+
+  <script type="module">
+    import { ethers } from './ethers-5.4.4.esm.min.mjs';
+
+    // Use the Zerion ERC-1155 NFT as a placeholder until implementing my own
+    const zerionAddress = '0x74EE68a33f6c9f113e22B3B77418B75f85d07D22';
+    const zerionAbi = [
+      'function balanceOf(address account, uint256 id) external view returns (uint256)'
+    ];
+    let provider;
+    if (window.ethereum !== undefined) { // MetaMask injects the window.ethereum global
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+    }
+    const zerion = new ethers.Contract(zerionAddress, zerionAbi, provider);
+
+    // Update HTML to reflect current active account
+    const showAddress = async address => {
+      document.getElementById('address').innerText = address ? `Connected address: ${address}` : 'No address connected!';
+      const tokens = await zerion.balanceOf(address, 5);
+      if (!ethers.BigNumber.isBigNumber(tokens)) {
+        window.alert('Something went wrong fetching your NFTs. Try again.');
+        return;
+      }
+      document.getElementById('permission').innerText = address ? `Number of access tokens owned: ${tokens}` : 'No custom short link permission!';
+      if (tokens > 0) {
+        document.getElementById('short-url').removeAttribute('disabled');
+      }
+      else {
+        document.getElementById('short-url').setAttribute('disabled', '');
+      }
+    }
+
+    // Event handler for the Connect button
+    const connect = () => {
+      if (window.ethereum === undefined) {
+        window.alert('No Web3 wallet found! Install MetaMask to continue.');
+        return;
+      }
+      provider.send('eth_requestAccounts', []).then(response => showAddress(response[0])); // EIP-1102 JSON RPC API method
+    }
+
+    // Add event hooks on connect button and on MetaMask account change
+    document.getElementById('connect-button').addEventListener('click', connect);
+    if (window.ethereum !== undefined) {
+      window.ethereum.on('accountsChanged', accounts => showAddress(accounts[0])); // MetaMask API reference: https://docs.metamask.io/guide/ethereum-provider.html#events
+    }
+  </script>
 </body>
 
 </html>

@@ -57,8 +57,8 @@
     <form action="http://127.0.0.1:8787/" method="post">
     <!-- <form action="https://api.alu.pm/" method="post"> -->
 
-      <label for="short-url">Enter a custom short URL, or leave blank to generate a random short URL. Maximum 80 characters, valid characters are alphanumeric, "-", "_", and ".":</label>
-      <input type="text" id="short-url" name="short-url" placeholder="example" maxlength="80" pattern="^[0-9a-zA-Z-_.]*$">
+      <label for="short-url">[Premium feature] Enter a custom short URL. Maximum 80 characters, valid characters are alphanumeric, hyphen (-), and underscore (_):</label>
+      <input type="text" id="short-url" name="short-url" placeholder="example" maxlength="80" pattern="^[0-9a-zA-Z-_]*$" disabled>
 
       <label for="full-url">Enter a URL:</label>
       <input type="url" id="full-url" name="full-url" placeholder="https://example.com" required>

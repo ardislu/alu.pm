@@ -8,7 +8,7 @@ async function handleRequest(request) {
     const fullUrl = searchParams.get('full-url'); // Must match HTML <input> ID
 
     // Validation regex to short circuit known bad inputs
-    const validShortUrlRegex = /^[0-9a-zA-Z-_.]*$/g;
+    const validShortUrlRegex = /^[0-9a-zA-Z-_]*$/g;
 
     // Generic error responses
     const invalidShortUrlResponse = new Response('Invalid short URL', { status: 400 });
@@ -48,7 +48,7 @@ async function handleRequest(request) {
   // Handle short link fetch
   if (request.method === 'GET') {
     const shortUrl = request.url.split('/').pop();
-    const validShortUrlRegex = /^[0-9a-zA-Z-_.]*$/g;
+    const validShortUrlRegex = /^[0-9a-zA-Z-_]*$/g;
     const invalidResponse = new Response('Invalid short URL', { status: 404 });
 
     // Short circuit known bad shortUrls

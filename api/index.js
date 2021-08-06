@@ -5,7 +5,7 @@ async function handleRequest(request) {
     // Parse user form inputs
     const body = await request.text();
     const searchParams = new URLSearchParams(body);
-    const shortUrl = searchParams.get('short-url'); // Must match HTML <input> ID
+    let shortUrl = searchParams.get('short-url'); // Must match HTML <input> ID
     const fullUrl = searchParams.get('full-url'); // Must match HTML <input> ID
 
     // Validation regex to short circuit known bad inputs
@@ -15,8 +15,18 @@ async function handleRequest(request) {
     const invalidShortUrlResponse = new Response('Invalid short URL', { status: 400 })
     const invalidFullUrlResponse = new Response('Invalid full URL', { status: 400 })
 
+    // Generate random 8 character shortUrl if none is provided
+    if (shortUrl === null || shortUrl === '') {
+      do {
+        let array = new Uint32Array(8);
+        crypto.getRandomValues(array);
+        // Need to spread typed array into a non-typed array to allow .map() to output strings,
+        // and use .toString(36) to convert number to alphanumeric (base-36 = 0-9 + a-z)
+        shortUrl = [...array].map(v => (v % 36).toString(36)).join('');
+      } while (URL_MAPPING.get(shortUrl) !== null); // Check that the random shortUrl isn't already taken
+    }
     // Short circuit known bad shortUrls
-    if (!validShortUrlRegex.test(shortUrl) || shortUrl === null || shortUrl === undefined || shortUrl === '' || shortUrl === 'favicon.ico') {
+    else if (!validShortUrlRegex.test(shortUrl) || shortUrl === 'favicon.ico') {
       return invalidShortUrlResponse;
     }
 

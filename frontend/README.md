@@ -14,3 +14,7 @@ GitHub Pages automatically redirects any `HTTP 404 Not Found` to `404.html` if i
 ```
 http-server
 ```
+
+## Javascript modules
+
+`ethers.js` is imported as an ES6 module in `index.html`. For modules to work correctly, the `Content-Type` response header must be set to the [correct MIME type](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#aside_%E2%80%94_.mjs_versus_.js) by the web server serving the module file. `http-server` does this automatically.

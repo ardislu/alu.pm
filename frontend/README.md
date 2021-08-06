@@ -8,6 +8,9 @@ GitHub Pages automatically redirects any `HTTP 404 Not Found` to `404.html` if i
 
 1. Install Node.js (this is ONLY used for the web server; the website itself does not use Node.js)
 
-2. `npm i -g local-web-server`
+2. `npm i -g http-server`
 
-3. `ws --rewrite '/:id -> 404.html'`
+3. By default, `http-server` already redirects 404 errors to `404.html` (no extra configuration needed):
+```
+http-server
+```

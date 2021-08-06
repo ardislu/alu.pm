@@ -1,5 +1,4 @@
 async function handleRequest(request) {
-
   // Handle new short link creation
   if (request.method === 'POST') {
     // Parse user form inputs
@@ -12,8 +11,8 @@ async function handleRequest(request) {
     const validShortUrlRegex = /^[0-9a-zA-Z-_.]*$/g;
 
     // Generic error responses
-    const invalidShortUrlResponse = new Response('Invalid short URL', { status: 400 })
-    const invalidFullUrlResponse = new Response('Invalid full URL', { status: 400 })
+    const invalidShortUrlResponse = new Response('Invalid short URL', { status: 400 });
+    const invalidFullUrlResponse = new Response('Invalid full URL', { status: 400 });
 
     // Generate random 8 character shortUrl if none is provided
     if (shortUrl === null || shortUrl === '') {

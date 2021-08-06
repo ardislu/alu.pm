@@ -26,9 +26,14 @@ wrangler kv:namespace create "URL_MAPPING"
 
 NOTE: `index.js` has hardcoded references to a KV namespace named `URL_MAPPING`. If you choose a different KV namespace name in the command above, make sure to update `index.js` accordingly.
 
-5. Replace the `kv_namespaces` value in `wrangler.toml` as directed by the CLI output.
-
-6. Test that the Worker is working as expected:
+5. (Optional) Create a preview KV namespace for development:
 ```
-wrangler preview
+wrangler kv:namespace create "URL_MAPPING" --preview
+```
+
+6. Replace the `kv_namespaces` value in `wrangler.toml` as directed by the CLI output.
+
+7. Test that the Worker is working as expected:
+```
+wrangler dev
 ```

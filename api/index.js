@@ -14,10 +14,10 @@ async function handleRequest(request) {
     const invalidShortUrlResponse = new Response('Invalid short URL', { status: 400 });
     const invalidFullUrlResponse = new Response('Invalid full URL', { status: 400 });
 
-    // Generate random 8 character shortUrl if none is provided
+    // Generate random 4 character shortUrl if none is provided
     if (shortUrl === null || shortUrl === '') {
       do {
-        let array = new Uint32Array(8);
+        let array = new Uint32Array(4);
         crypto.getRandomValues(array);
         // Need to spread typed array into a non-typed array to allow .map() to output strings,
         // and use .toString(36) to convert number to alphanumeric (base-36 = 0-9 + a-z)

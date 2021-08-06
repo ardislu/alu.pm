@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "login": "wrangler login",
+    "develop": "wrangler dev",
     "preview": "wrangler preview",
     "build": "wrangler build",
     "publish": "wrangler publish"
@@ -16,7 +17,7 @@
   ],
   "author": "Ardis Lu",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@cloudflare/wrangler": "^1.19.0"
   }
 }

@@ -99,18 +99,18 @@
 
     // Update HTML to reflect current active account
     const showAddress = async address => {
-      document.getElementById('address').innerText = address ? `✔ ${address}` : '❌ No address connected!';
+      document.getElementById('address').textContent = address ? `✔ ${address}` : '❌ No address connected!';
       const tokens = await zerion.balanceOf(address, 5);
       if (!ethers.BigNumber.isBigNumber(tokens)) {
         window.alert('Something went wrong fetching your NFTs. Try again.');
         return;
       }
       if (tokens > 0) {
-        document.getElementById('permission').innerText = '✔ Custom short links allowed!';
+        document.getElementById('permission').textContent = '✔ Custom short links allowed!';
         document.getElementById('short-url').removeAttribute('disabled');
       }
       else {
-        document.getElementById('permission').innerText = '❌ Custom short links not allowed!';
+        document.getElementById('permission').textContent = '❌ Custom short links not allowed!';
         document.getElementById('short-url').value = '';
         document.getElementById('short-url').setAttribute('disabled', '');
       }

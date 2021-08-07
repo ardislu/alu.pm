@@ -32,7 +32,7 @@
       const showError = error => {
         document.title = "Invalid short URL";
         const message = document.getElementsByTagName("p")[0];
-        message.innerText = `"${shortUrl}" is not a valid short URL.`;
+        message.textContent = `"${shortUrl}" is not a valid short URL.`;
       };
 
       await fetch(url)

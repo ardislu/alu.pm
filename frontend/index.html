@@ -105,11 +105,12 @@
         window.alert('Something went wrong fetching your NFTs. Try again.');
         return;
       }
-      document.getElementById('permission').innerText = tokens > 0 ? '✔ Custom short links allowed!' : '❌ Custom short links not allowed!';
       if (tokens > 0) {
+        document.getElementById('permission').innerText = '✔ Custom short links allowed!';
         document.getElementById('short-url').removeAttribute('disabled');
       }
       else {
+        document.getElementById('permission').innerText = '❌ Custom short links not allowed!';
         document.getElementById('short-url').setAttribute('disabled', '');
       }
     }

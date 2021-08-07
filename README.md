@@ -1,6 +1,6 @@
 # alu.pm
 
-Short link service with access control on the Ethereum blockchain
+Monorepo for a short URL service, with access control managed on the Ethereum blockchain.
 
 ## Quickstart
 
@@ -25,8 +25,8 @@ API is hosted on a [Cloudflare Worker](https://workers.cloudflare.com/). The sho
 
 ## frontend
 
-Minimal frontend to demo short link creation and redirection.
+Minimal frontend to demo short link creation and redirection, hosted on [Cloudflare Pages](https://pages.cloudflare.com/).
 
-## solidity
+## [IN PROGESS] solidity
 
-The smart contract deployed on the Ethereum blockchain to handle authentication (NFTs)
+The smart contract deployed on the Ethereum blockchain to handle authentication and authorization (via ERC-1155 NFTs).

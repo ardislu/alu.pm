@@ -66,7 +66,7 @@
     <output id="address">❌ No address connected!</output>
     <output id="permission">❌ Custom short links not allowed!</output>
 
-    <form action="http://127.0.0.1:8787/" method="post">
+    <form id="form" action="http://127.0.0.1:8787/" method="post">
     <!-- <form action="https://api.alu.pm/" method="post"> -->
 
       <label for="short-url">[Premium feature] Enter a custom short URL. Maximum 80 characters, valid characters are alphanumeric, hyphen (-), and underscore (_):</label>
@@ -74,6 +74,8 @@
 
       <label for="full-url">Enter a URL:</label>
       <input type="url" id="full-url" name="full-url" placeholder="https://example.com" required>
+
+      <input type="hidden" id="signature" name="signature">
 
       <button type="submit">Generate short link</button>
     </form>
@@ -88,8 +90,10 @@
       'function balanceOf(address account, uint256 id) external view returns (uint256)'
     ];
     let provider;
+    let signer;
     if (window.ethereum !== undefined) { // MetaMask injects the window.ethereum global
       provider = new ethers.providers.Web3Provider(window.ethereum);
+      signer = provider.getSigner();
     }
     const zerion = new ethers.Contract(zerionAddress, zerionAbi, provider);
 
@@ -119,11 +123,26 @@
       provider.send('eth_requestAccounts', []).then(response => showAddress(response[0])); // EIP-1102 JSON RPC API method
     }
 
+    // Event handler for the form submission
+    const submitForm = async event => {
+      event.preventDefault();
+      const shortUrl = event.target.elements['short-url'].value;
+      const fullUrl = event.target.elements['full-url'].value;
+      if (shortUrl === '' || shortUrl === undefined || shortUrl === null) {
+        event.target.submit();
+        return;
+      }
+      const signature = await signer.signMessage(`Sign this message to create the short URL "https://alu.pm/${shortUrl}" for the full URL "${fullUrl}".`);  // Must match backend exactly
+      event.target.elements['signature'].value = signature;
+      event.target.submit();
+    }
+
     // Add event hooks on connect button and on MetaMask account change
     document.getElementById('connect-button').addEventListener('click', connect);
     if (window.ethereum !== undefined) {
       window.ethereum.on('accountsChanged', accounts => showAddress(accounts[0])); // MetaMask API reference: https://docs.metamask.io/guide/ethereum-provider.html#events
     }
+    document.getElementById('form').addEventListener('submit', submitForm)
   </script>
 </body>
 

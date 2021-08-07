@@ -17,6 +17,9 @@
   ],
   "author": "Ardis Lu",
   "license": "ISC",
+  "dependencies": {
+    "ethers": "^5.4.4"
+  },
   "devDependencies": {
     "@cloudflare/wrangler": "^1.19.0"
   }

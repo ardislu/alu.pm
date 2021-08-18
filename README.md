@@ -27,6 +27,6 @@ API is hosted on a [Cloudflare Worker](https://workers.cloudflare.com/). The sho
 
 Minimal frontend to demo short link creation and redirection, hosted on [Cloudflare Pages](https://pages.cloudflare.com/).
 
-## [IN PROGESS] solidity
+## alu-access-token
 
 The smart contract deployed on the Ethereum blockchain to handle authentication and authorization (via ERC-1155 NFTs).

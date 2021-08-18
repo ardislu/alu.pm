@@ -1,5 +1,5 @@
 {
-  "name": "solidity",
+  "name": "alu-access-token",
   "version": "0.1.0",
   "description": "Smart contract to handle access control for the https://alu.pm short link service.",
   "private": true,
@@ -13,5 +13,9 @@
     "blockchain"
   ],
   "author": "Ardis Lu",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.2.0",
+    "hardhat": "^2.6.0"
+  }
 }

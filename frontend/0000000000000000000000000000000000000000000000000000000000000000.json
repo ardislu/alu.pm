@@ -1,0 +1,12 @@
+{
+  "name": "Premium Alu Access Token",
+  "description": "Premium access token to create custom short links on alu.pm!",
+  "image": "https://oogachacka.eth.link",
+  "external_url": "https://alu.pm",
+  "attributes": [
+      {
+          "trait_type": "Rarity",
+          "value": "Legendary"
+      }
+  ]
+}

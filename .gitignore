@@ -3,4 +3,7 @@ wrangler.toml
 dist
 worker
 .install.lock
+.env
 */package-lock.json
+alu-access-token/artifacts
+alu-access-token/cache

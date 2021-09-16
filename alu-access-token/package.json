@@ -5,7 +5,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "rpc": "npx hardhat node",
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run ./scripts/deploy.js"
   },
   "keywords": [
     "solidity",
@@ -15,7 +17,10 @@
   "author": "Ardis Lu",
   "license": "ISC",
   "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@openzeppelin/contracts": "^4.2.0",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.4.6",
     "hardhat": "^2.6.0"
   }
 }

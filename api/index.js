@@ -94,7 +94,7 @@ async function createShortLink(request) {
     }
 
     // ethers.js is too slow, need to directly call the JSON RPC API
-    const resp = await fetch('https://cloudflare-eth.com', {
+    const resp = await fetch('https://eth.alu.pm/v1/mainnet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

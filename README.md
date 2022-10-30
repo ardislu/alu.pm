@@ -1,5 +1,9 @@
 # alu.pm
 
+**Update October 2022**: This project is superseded by [alu.bz](https://github.com/ardislu/alu.bz).
+
+-----
+
 Monorepo for a short URL service, with access control managed on the Ethereum blockchain.
 
 ## Quickstart
